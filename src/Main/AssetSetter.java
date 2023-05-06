@@ -9,7 +9,7 @@ public class AssetSetter {
 		this.admJuego = admJuego;
 	}
 	
-	public void colocarObjeto() {
+	public int colocarObjeto() {
 		int cont = 0;
 		for (int i=0;i<admJuego.obj.length;i++) {
 			for (int j=0;j<admJuego.obj.length;j++) {
@@ -27,8 +27,15 @@ public class AssetSetter {
 				admJuego.obj[i].MundoX = x * admJuego.tamPantalla;
 				admJuego.obj[i].MundoY = y * admJuego.tamPantalla;
 				cont=0;
-				break;
+				return i;
 			}
+		}
+		return 0;
+	}
+	
+	public void explotarBomba(int aux) {
+		if (aux !=  999) {
+			admJuego.obj[aux] = null;			
 		}
 	}
 }

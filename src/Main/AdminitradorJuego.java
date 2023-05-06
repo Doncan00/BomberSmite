@@ -47,7 +47,10 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	}
 	
 	public void setUpGame () {
-		aSetter.colocarObjeto();
+		int aux = aSetter.colocarObjeto();
+		HiloBomba hiloBomba = new HiloBomba(aux);
+		hiloBomba.start();
+		
 	}
 	
 	public void iniciarHiloJuego() {

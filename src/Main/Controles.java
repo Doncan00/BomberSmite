@@ -33,10 +33,10 @@ public class Controles implements KeyListener{
 			dere = true;
 
 		}
-		if(code == KeyEvent.VK_SPACE) {
-			bomba = true;
-
-		}
+//		IF(CODE == KEYEVENT.VK_SPACE) {
+//			BOMBA = TRUE;
+//
+//		}
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package Objetos;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import Main.AdminitradorJuego;
@@ -11,6 +12,7 @@ public class SuperObjeto {
 	public String nombre;
 	public boolean colision = false;
 	public int MundoX, MundoY;
+	public Rectangle hitBox = new Rectangle(0,0,25,25);
 	
 	
 	public void draw (Graphics2D g2, AdminitradorJuego admJuego) {

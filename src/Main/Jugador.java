@@ -14,6 +14,7 @@ public class Jugador {
 	public Rectangle hitBox;
 	public boolean ColisiOn = false;
 	public int hitBoxX,hitBoxY;
+	public int DefaulthitBoxX,DefaulthitBoxY;
 	
 	AdminitradorJuego aj;
 	Controles teclas;
@@ -24,6 +25,9 @@ public class Jugador {
 		this.teclas = teclas;
 		
 		hitBox = new Rectangle(0, 0, 15, 15);
+		
+		DefaulthitBoxX = hitBox.x;
+		DefaulthitBoxY = hitBox.y;
 		
 		hitBoxX = hitBox.x;
 		hitBoxY = hitBox.y;
@@ -85,10 +89,16 @@ public class Jugador {
 			}
 			
 		}
+		
+		if (teclas.bomba) {
+			aj.setUpGame(); 
+			teclas.bomba =false;
+		}
 	}
 	
 	public void dibujar(Graphics2D g2) {
 		
+
 		g2.setColor(Color.white);
 		g2.fillRect(x, y, aj.tamPantalla-10, aj.tamPantalla-10);
 	}

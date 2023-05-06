@@ -13,7 +13,7 @@ public class Main {
 		ventana.setSize(1015, 540);
 		ventana.add(aJ);
 		
-		aJ.setUpGame();
+//		aJ.setUpGame();
 		
 		aJ.iniciarHiloJuego();
 		

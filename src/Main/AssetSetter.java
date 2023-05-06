@@ -10,13 +10,25 @@ public class AssetSetter {
 	}
 	
 	public void colocarObjeto() {
-		admJuego.obj[0] = new OBJ_Bomba();
-		admJuego.obj[0].MundoX = 3 * admJuego.tamPantalla;
-		admJuego.obj[0].MundoY = 3 * admJuego.tamPantalla;
-		
-		admJuego.obj[1] = new OBJ_Bomba();
-		admJuego.obj[1].MundoX = 4 * admJuego.tamPantalla;
-		admJuego.obj[1].MundoY = 17 * admJuego.tamPantalla;
+		int cont = 0;
+		for (int i=0;i<admJuego.obj.length;i++) {
+			for (int j=0;j<admJuego.obj.length;j++) {
+				if (admJuego.obj[j] != null) {
+					if ((admJuego.jugador.x / admJuego.tamPantalla) == (admJuego.obj[j].MundoX / admJuego.tamPantalla) ||
+							(admJuego.jugador.x / admJuego.tamPantalla) == (admJuego.obj[j].MundoY / admJuego.tamPantalla)) {
+						cont++;
+					}
+				}
+			}
+			if (admJuego.obj[i] == null && cont == 0) {
+				int x = admJuego.jugador.x / admJuego.tamPantalla;
+				int y = admJuego.jugador.y / admJuego.tamPantalla;
+				admJuego.obj[i] = new OBJ_Bomba();
+				admJuego.obj[i].MundoX = x * admJuego.tamPantalla;
+				admJuego.obj[i].MundoY = y * admJuego.tamPantalla;
+				cont=0;
+				break;
+			}
+		}
 	}
-
 }

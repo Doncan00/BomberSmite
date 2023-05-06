@@ -4,7 +4,7 @@ import java.awt.event.KeyListener;
 
 public class Controles implements KeyListener{
 	
-	public boolean arriba, abajo, izqui, dere;
+	public boolean arriba, abajo, izqui, dere, bomba;
 
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -33,6 +33,10 @@ public class Controles implements KeyListener{
 			dere = true;
 
 		}
+		if(code == KeyEvent.VK_SPACE) {
+			bomba = true;
+
+		}
 	}
 
 	@Override
@@ -55,6 +59,11 @@ public class Controles implements KeyListener{
 		if(code == KeyEvent.VK_D) {
 			dere = false;
 
+		}
+		
+		if(code == KeyEvent.VK_SPACE) {
+			bomba = true;
+			
 		}
 	}
 	

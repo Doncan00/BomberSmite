@@ -4,9 +4,10 @@ public class HiloBomba extends Thread{
 
 	int aux = 0;
 	AdminitradorJuego aj;
-	AssetSetter as = new AssetSetter(aj);
-	public HiloBomba (int aux) {
+	AssetSetter as;
+	public HiloBomba (int aux, AssetSetter as) {
 		this.aux = aux;
+		this.as = as;
 	}
 	
 	public void run() {
@@ -14,6 +15,7 @@ public class HiloBomba extends Thread{
 			System.out.println("Bomb planted");
 			Thread.sleep(3000);
 			System.out.println(aux);
+		
 			as.explotarBomba(aux);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

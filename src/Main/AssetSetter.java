@@ -11,8 +11,8 @@ public class AssetSetter {
 	
 	public int colocarObjeto() {
 		int cont = 0;
-		for (int i=0;i<admJuego.obj.length;i++) {
-			for (int j=0;j<admJuego.obj.length;j++) {
+		for (int i=1;i<admJuego.obj.length;i++) {
+			for (int j=1;j<admJuego.obj.length;j++) {
 				if (admJuego.obj[j] != null) {
 					if ((admJuego.jugador.x / admJuego.tamPantalla) == (admJuego.obj[j].MundoX / admJuego.tamPantalla) ||
 							(admJuego.jugador.x / admJuego.tamPantalla) == (admJuego.obj[j].MundoY / admJuego.tamPantalla)) {

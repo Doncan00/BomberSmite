@@ -33,7 +33,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public Colision cColision = new Colision(this);
 	public AssetSetter aSetter = new AssetSetter (this);
 	public Jugador jugador = new Jugador(this, teclas);
-	public SuperObjeto obj[] = new SuperObjeto[3]; 
+	public SuperObjeto obj[] = new SuperObjeto[4]; 
 	
 	public AdminitradorJuego() {
 		
@@ -48,8 +48,11 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	
 	public void setUpGame () {
 		int aux = aSetter.colocarObjeto();
-		HiloBomba hiloBomba = new HiloBomba(aux);
-		hiloBomba.start();
+		HiloBomba hiloBomba = new HiloBomba(aux,aSetter);
+		if (aux != 0) {
+			hiloBomba.start();
+			
+		}
 		
 	}
 	

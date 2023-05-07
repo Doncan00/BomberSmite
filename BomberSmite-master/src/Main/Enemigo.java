@@ -25,6 +25,13 @@ public class Enemigo {
 	AdminitradorJuego aj;
 	Controles eteclas;
 
+
+		public void setEx(int ex){
+			this.ex=ex;
+		}
+		public void setEy(int ey){
+			this.ey=ey;
+		}
 	public Enemigo(AdminitradorJuego aj) {
 		
 		this.aj = aj;

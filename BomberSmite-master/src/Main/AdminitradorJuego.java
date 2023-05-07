@@ -33,6 +33,8 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public Colision cColision = new Colision(this);
 	public AssetSetter aSetter = new AssetSetter (this);
 	public Jugador jugador = new Jugador(this, teclas);
+
+	public Enemigo enemigo1 = new Enemigo(this);
 	public SuperObjeto obj[] = new SuperObjeto[4]; 
 	
 	public AdminitradorJuego() {
@@ -76,6 +78,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 					
 					//1 ACTUALIZA: ACTUALIZA LA INFORMACION COMO LA POSICION DEL PERSONAJE
 					actualizar();
+					System.out.println(enemigo1.enemigodireccion);
 					
 					//2 DRAW: DIBUJA EN PANTALLA LA ACTUALIZACION DE INFORMACION
 					repaint();
@@ -101,8 +104,10 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	}
 	
 	public void actualizar() {
-		
+
+		enemigo1.actualizarenemigo();
 		jugador.actualizar();
+
 		
 	}
 	
@@ -123,6 +128,8 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 		}
 		
 		jugador.dibujar(g2);
+		enemigo1.dibujar(g2);
+
 		
 		g2.dispose();
 	}

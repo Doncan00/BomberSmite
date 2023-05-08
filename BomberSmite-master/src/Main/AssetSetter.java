@@ -1,9 +1,11 @@
 package Main;
 import Objetos.OBJ_Bomba;
+import Objetos.OBJ_Fuego;
 
 public class AssetSetter {
 
 	AdminitradorJuego admJuego;
+	public boolean expl[] = new boolean[4];
 	
 	public AssetSetter(AdminitradorJuego admJuego) {
 		this.admJuego = admJuego;
@@ -16,8 +18,8 @@ public class AssetSetter {
 		for (int i=1;i<admJuego.obj.length;i++) {
 			for (int j=1;j<admJuego.obj.length;j++) {
 				if (admJuego.obj[j] != null) {
-					if ((jugadorX / admJuego.tamPantalla) == (admJuego.obj[j].MundoX / admJuego.tamPantalla) &&
-							(jugadorY / admJuego.tamPantalla) == (admJuego.obj[j].MundoY / admJuego.tamPantalla)) {
+					if ((jugadorX / admJuego.tamPantalla+1) == (admJuego.obj[j].MundoX / admJuego.tamPantalla) &&
+							(jugadorY / admJuego.tamPantalla+1) == (admJuego.obj[j].MundoY / admJuego.tamPantalla)) {
 						cont++;
 					}
 				}
@@ -36,6 +38,16 @@ public class AssetSetter {
 	}
 	
 	public void explotarBomba(int aux) {
+		int x = admJuego.obj[aux].MundoX;
+		int y = admJuego.obj[aux].MundoY;
+		admJuego.obj2[aux] = new OBJ_Fuego();
+		admJuego.obj2[aux].MundoX = x;
+		admJuego.obj2[aux].MundoY = y;
+		HiloExplosion hiloExpl = new HiloExplosion(aux,x,y,admJuego);
+		hiloExpl.start();
+	}
+	
+	public void borrarBomba (int aux) {
 		if (aux !=  999) {
 			admJuego.obj[aux] = null;			
 		}

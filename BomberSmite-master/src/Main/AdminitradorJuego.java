@@ -6,32 +6,31 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import Objetos.SuperObjeto;
 
-public class AdminitradorJuego extends JPanel implements Runnable{
-	
+public class AdminitradorJuego extends JPanel implements Runnable {
+
 	//CONFIGURACIONES DE PANTALLA
-		final int escalaOriginal = 5;
-		final int escala = 5;
-		
-		public final int tamPantalla = escalaOriginal * escala; //25x25 CUADROS
-		public final int maxColPantalla = 40;
-		public final int maxFilPantalla = 20;
-		public final int anchoPantalla = tamPantalla * maxColPantalla; // 1015 PIXELES
-		public final int alturaPantalla = tamPantalla * maxFilPantalla; // 540 PIXELES
-	
-	
+	final int escalaOriginal = 5;
+	final int escala = 5;
+
+	public final int tamPantalla = escalaOriginal * escala; //25x25 CUADROS
+	public final int maxColPantalla = 40;
+	public final int maxFilPantalla = 20;
+	public final int anchoPantalla = tamPantalla * maxColPantalla; // 1015 PIXELES
+	public final int alturaPantalla = tamPantalla * maxFilPantalla; // 540 PIXELES
+
+
 	int FPS = 60;
-	
-	
+
+
 	ControladorTile ControladorT = new ControladorTile(this);
 	Controles teclas = new Controles();
 	Thread hiloJuego;
 	public Colision cColision = new Colision(this);
-	public AssetSetter aSetter = new AssetSetter (this);
+	public AssetSetter aSetter = new AssetSetter(this);
 	public Jugador jugador = new Jugador(this, teclas);
 
 	public Enemigo enemigo1 = new Enemigo(this);
@@ -39,6 +38,8 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 	public Enemigo enemigo2 = new Enemigo(this);
 
 	public Enemigo enemigo3 = new Enemigo(this);
+
+	public Vidas vidascantidad = new Vidas(3);
 	public SuperObjeto obj[] = new SuperObjeto[4]; 
 	public SuperObjeto obj2[] = new SuperObjeto[4]; 
 	public boolean[] expl = new boolean[4];
@@ -47,9 +48,11 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 		for (int i=0; i<expl.length; i++) {
 			expl[i] = false;
 		}
-		enemigo2.setEy(400);
-		enemigo2.setEx(940);
-		enemigo3.setEx(940);
+
+		enemigo1.setEy(425);
+		enemigo2.setEy(425);
+		enemigo2.setEx(925);
+		enemigo3.setEx(925);
 		this.setSize(anchoPantalla, alturaPantalla);
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setDoubleBuffered(true);
@@ -119,8 +122,25 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 		enemigo2.actualizarenemigo();
 		enemigo3.actualizarenemigo();
 		jugador.actualizar();
+		Rect jug = new Rect(jugador.x, jugador.y, 15, 15);
+		Rect enem1 = new Rect(enemigo1.ex, enemigo1.ey, 15, 15);
+		Rect enem2 = new Rect(enemigo2.ex, enemigo2.ey, 15, 15);
+		Rect enem3 = new Rect(enemigo3.ex, enemigo3.ey, 15, 15);
+		if(jug.colision(enem1) || jug.colision(enem2) || jug.colision(enem3)){
+			jugador.x=25;
+			jugador.y=25;
+			vidascantidad.vidasnum--;
+			enemigo1.setEy(425);
+			enemigo2.setEy(425);
+			enemigo2.setEx(925);
+			enemigo3.setEx(925);
+		}
+		if (vidascantidad.vidasnum==0){
+			JOptionPane.showMessageDialog(null,"PERDISTEEE","JA",JOptionPane.INFORMATION_MESSAGE);
+			vidascantidad.vidasnum=3;
 
-		
+		}
+
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -143,13 +163,45 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 				obj2[i].draw2(g2, this);
 			}
 		}
-		
+
+
 		jugador.dibujar(g2);
 		enemigo1.dibujar(g2);
 		enemigo2.dibujar(g2);
 		enemigo3.dibujar(g2);
+		vidascantidad.dibujar(g2);
+
 
 
 		g2.dispose();
+	}
+	public class Rect {
+
+		int x=0;
+		int y=0;
+		int w=0;
+		int h=0;
+
+
+		Rect(int x,int y, int w, int h){
+			this.x=x;
+			this.y=y;
+			this.w=w;
+			this.h=h;
+
+
+		}
+
+		public Boolean colision(Rect target) {
+
+			if(this.x<target.x+target.w &&
+					this.x+w>target.x &&
+
+					this.y<target.y+target.h &&
+					this.y+this.h>target.y) {
+				return true;
+			}
+			return false;
+		}
 	}
 }

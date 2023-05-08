@@ -36,7 +36,7 @@ public class Enemigo {
 		
 		this.aj = aj;
 
-		ehitBox = new Rectangle(4, 8, 15, 15);
+		ehitBox = new Rectangle(0, 0, 24, 24);
 		
 		eDefaulthitBoxX = ehitBox.x;
 		eDefaulthitBoxY = ehitBox.y;
@@ -49,9 +49,9 @@ public class Enemigo {
 	}
 	public void posicionBaseEnemigo() {
 		
-		ex = 27;
-		ey = 27;
-		evelocidad = 2;
+		ex = 25;
+		ey = 25;
+		evelocidad = 1;
 		edireccion = "abajo";
 		
 	}
@@ -141,7 +141,11 @@ public class Enemigo {
 
 			break;
 		}
-		g2.drawImage(imagen, ex, ey, aj.tamPantalla, aj.tamPantalla, null);
+
+		g2.drawImage(imagen, ex, ey, 25, 25, null);
+	//	g2.fillRect(ex,ey,25,25);
 	}
+
+
 
 }

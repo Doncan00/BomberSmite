@@ -17,8 +17,8 @@ public class SuperObjeto {
 	
 	public void draw (Graphics2D g2, AdminitradorJuego admJuego) {
 		
-		int PantallaX = MundoX - admJuego.jugador.hitBoxX;
-		int PantallaY = MundoY - admJuego.jugador.hitBoxY;
+		int PantallaX = ((MundoX - admJuego.jugador.hitBoxX) / admJuego.tamPantalla) * admJuego.tamPantalla;
+		int PantallaY = ((MundoY - admJuego.jugador.hitBoxY) / admJuego.tamPantalla) * admJuego.tamPantalla;
 		
 		g2.drawImage(imagen, PantallaX, PantallaY, 25, 25, null);
 	}

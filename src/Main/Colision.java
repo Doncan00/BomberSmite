@@ -1,5 +1,7 @@
 package Main;
 
+import java.util.Random;
+
 public class Colision {
 	
 	AdminitradorJuego aj;
@@ -60,5 +62,64 @@ public class Colision {
 			break;
 		}
 		
+	}
+
+	public void revisarTile(Enemigo e1) {
+		Random rand = new Random();
+		int enemigoIzquiX = e1.ex + e1.ehitBox.x;
+		int enemigoDereX = e1.ex + e1.ehitBox.x + e1.ehitBox.width;
+
+		int enemigoArribaY = e1.ey + e1.ehitBox.y;
+		int enemigoAbajoY = e1.ey + e1.ehitBox.y + e1.ehitBox.height;
+
+		int enemigoIzquiCol = enemigoIzquiX/aj.tamPantalla;
+		int enemigoDereCol = enemigoDereX/aj.tamPantalla;
+		int enemigoArribaFila = enemigoArribaY/aj.tamPantalla;
+		int enemigoAbajoFila = enemigoAbajoY/aj.tamPantalla;
+
+		int tileNum1, tileNum2;
+
+		switch(e1.edireccion) {
+			case "arriba":
+				enemigoArribaFila = (enemigoArribaY - e1.evelocidad)/aj.tamPantalla;
+				tileNum1 = aj.ControladorT.numTileMap[enemigoIzquiCol][enemigoArribaFila];
+				tileNum2 = aj.ControladorT.numTileMap[enemigoDereCol][enemigoArribaFila];
+				if(aj.ControladorT.tile[tileNum1].colision == true || aj.ControladorT.tile[tileNum2].colision == true) {
+					e1.eColisiOn = true;
+					e1.enemigodireccion=rand.nextInt(4);
+				}
+				break;
+			case "abajo":
+				enemigoAbajoFila = (enemigoAbajoY + e1.evelocidad)/aj.tamPantalla;
+				tileNum1 = aj.ControladorT.numTileMap[enemigoIzquiCol][enemigoAbajoFila];
+				tileNum2 = aj.ControladorT.numTileMap[enemigoDereCol][enemigoAbajoFila];
+				if(aj.ControladorT.tile[tileNum1].colision == true || aj.ControladorT.tile[tileNum2].colision == true) {
+					e1.eColisiOn = true;
+					e1.enemigodireccion=rand.nextInt(4);
+
+				}
+				break;
+			case "izquierda":
+				enemigoIzquiCol = (enemigoIzquiX - e1.evelocidad)/aj.tamPantalla;
+				tileNum1 = aj.ControladorT.numTileMap[enemigoIzquiCol][enemigoArribaFila];
+				tileNum2 = aj.ControladorT.numTileMap[enemigoIzquiCol][enemigoAbajoFila];
+				if(aj.ControladorT.tile[tileNum1].colision == true || aj.ControladorT.tile[tileNum2].colision == true) {
+					e1.eColisiOn = true;
+					e1.enemigodireccion=rand.nextInt(4);
+
+				}
+				break;
+			case "derecha":
+				enemigoDereCol = (enemigoDereX + e1.evelocidad)/aj.tamPantalla;
+				tileNum1 = aj.ControladorT.numTileMap[enemigoDereCol][enemigoArribaFila];
+				tileNum2 = aj.ControladorT.numTileMap[enemigoDereCol][enemigoAbajoFila];
+				if(aj.ControladorT.tile[tileNum1].colision == true || aj.ControladorT.tile[tileNum2].colision == true) {
+					e1.eColisiOn = true;
+					e1.enemigodireccion=rand.nextInt(4);
+
+				}
+				break;
+		}
+
 	}
 }

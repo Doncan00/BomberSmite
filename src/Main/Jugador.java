@@ -30,7 +30,11 @@ public class Jugador {
 		this.aj = aj;
 		this.teclas = teclas;
 		
+<<<<<<< HEAD
 		hitBox = new Rectangle(4, 8, 15, 15);
+=======
+		hitBox = new Rectangle(4 , 8, 16, 16);
+>>>>>>> f9af211afea21a7d0bcb7c008b6be528c3ba6c9e
 		
 		DefaulthitBoxX = hitBox.x;
 		DefaulthitBoxY = hitBox.y;

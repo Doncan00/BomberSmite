@@ -9,9 +9,9 @@ public class OBJ_Bomba extends SuperObjeto{
 	public OBJ_Bomba() {
 		// TODO Auto-generated constructor stub
 		nombre = "Bomba";
+		System.out.println("hola");
 		try {
 			imagen = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/Bomba.png"));
-			imagen2 = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/Explosion.png"));
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

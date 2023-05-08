@@ -4,13 +4,11 @@ import Objetos.SuperObjeto;
 
 public class HiloExplosion extends Thread{
 
-	int aux = 0,x,y;
+	int aux = 0;
 	AdminitradorJuego aj;
 	SuperObjeto hb;
 	public HiloExplosion (int aux,int x, int y,AdminitradorJuego aj) {
 		this.aux = aux;
-		this.x = x;
-		this.y = y;
 		this.aj = aj;
 		
 	}

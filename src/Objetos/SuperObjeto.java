@@ -26,10 +26,12 @@ public class SuperObjeto {
 	
 	public void draw2 (Graphics2D g2, AdminitradorJuego admJuego) {
 		
-				g2.drawImage(imagen2, PantallaX, PantallaY, 25, 25, null);
-//				g2.drawImage(imagen2,)
-		
-		
+		PantallaX = ((MundoX - admJuego.jugador.hitBoxX) / admJuego.tamPantalla) * admJuego.tamPantalla;
+		PantallaY = ((MundoY - admJuego.jugador.hitBoxY) / admJuego.tamPantalla) * admJuego.tamPantalla;
+
+		g2.drawImage(imagen2, PantallaX, PantallaY, 25, 25, null);
+		//				System.out.println(PantallaX+"         "+PantallaY);
+		//				g2.drawImage(imagen2,)
 	}
 
 

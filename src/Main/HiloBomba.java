@@ -12,9 +12,7 @@ public class HiloBomba extends Thread{
 	
 	public void run() {
 		try {
-			System.out.println("Bomb planted");
 			Thread.sleep(3000);
-			System.out.println(aux);
 		
 			as.explotarBomba(aux);
 		} catch (InterruptedException e) {

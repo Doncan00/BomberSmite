@@ -1,5 +1,6 @@
 package Main;
 import Objetos.OBJ_Bomba;
+import Objetos.OBJ_Fuego;
 
 public class AssetSetter {
 
@@ -20,7 +21,6 @@ public class AssetSetter {
 					if ((jugadorX / admJuego.tamPantalla+1) == (admJuego.obj[j].MundoX / admJuego.tamPantalla) &&
 							(jugadorY / admJuego.tamPantalla+1) == (admJuego.obj[j].MundoY / admJuego.tamPantalla)) {
 						cont++;
-						System.out.println("HOLAAAAA");
 					}
 				}
 			}
@@ -40,6 +40,10 @@ public class AssetSetter {
 	public void explotarBomba(int aux) {
 		int x = admJuego.obj[aux].MundoX;
 		int y = admJuego.obj[aux].MundoY;
+		admJuego.obj2[aux] = new OBJ_Fuego();
+		admJuego.obj2[aux].MundoX = x;
+		admJuego.obj2[aux].MundoY = y;
+		System.out.println(admJuego.obj2[aux].MundoX + "    " + admJuego.obj2[aux].MundoY);
 		HiloExplosion hiloExpl = new HiloExplosion(aux,x,y,admJuego);
 		hiloExpl.start();
 	}

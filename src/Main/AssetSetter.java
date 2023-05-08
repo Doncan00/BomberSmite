@@ -4,6 +4,7 @@ import Objetos.OBJ_Bomba;
 public class AssetSetter {
 
 	AdminitradorJuego admJuego;
+	public boolean expl[] = new boolean[4];
 	
 	public AssetSetter(AdminitradorJuego admJuego) {
 		this.admJuego = admJuego;
@@ -36,6 +37,13 @@ public class AssetSetter {
 	}
 	
 	public void explotarBomba(int aux) {
+		int x = admJuego.obj[aux].MundoX;
+		int y = admJuego.obj[aux].MundoY;
+		HiloExplosion hiloExpl = new HiloExplosion(aux,x,y,admJuego);
+		hiloExpl.start();
+	}
+	
+	public void borrarBomba (int aux) {
 		if (aux !=  999) {
 			admJuego.obj[aux] = null;			
 		}

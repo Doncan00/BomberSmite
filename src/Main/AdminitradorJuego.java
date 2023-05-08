@@ -40,8 +40,12 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 
 	public Enemigo enemigo3 = new Enemigo(this);
 	public SuperObjeto obj[] = new SuperObjeto[4]; 
+	public boolean[] expl = new boolean[4];
 	
 	public AdminitradorJuego() {
+		for (int i=0; i<expl.length; i++) {
+			expl[i] = false;
+		}
 		enemigo2.setEy(400);
 		enemigo2.setEx(940);
 		enemigo3.setEx(940);
@@ -59,7 +63,6 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 		HiloBomba hiloBomba = new HiloBomba(aux,aSetter);
 		if (aux != 0) {
 			hiloBomba.start();
-			
 		}
 		
 	}
@@ -132,6 +135,9 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 		for (int i=0; i<obj.length; i++) {
 			if (obj[i]!= null) {
 				obj[i].draw(g2,this);
+			}
+			if (expl[i]) {
+				obj[i].draw2(g2, null);
 			}
 		}
 		

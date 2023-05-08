@@ -40,6 +40,7 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 
 	public Enemigo enemigo3 = new Enemigo(this);
 	public SuperObjeto obj[] = new SuperObjeto[4]; 
+	public SuperObjeto obj2[] = new SuperObjeto[4]; 
 	public boolean[] expl = new boolean[4];
 	
 	public AdminitradorJuego() {
@@ -137,7 +138,9 @@ public class AdminitradorJuego extends JPanel implements Runnable{
 				obj[i].draw(g2,this);
 			}
 			if (expl[i]) {
-				obj[i].draw2(g2, null);
+				obj2[i].MundoX = obj[i].MundoX;
+				obj2[i].MundoY = obj[i].MundoY;
+				obj2[i].draw2(g2, this);
 			}
 		}
 		

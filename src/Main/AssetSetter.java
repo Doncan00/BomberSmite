@@ -17,9 +17,10 @@ public class AssetSetter {
 		for (int i=1;i<admJuego.obj.length;i++) {
 			for (int j=1;j<admJuego.obj.length;j++) {
 				if (admJuego.obj[j] != null) {
-					if ((jugadorX / admJuego.tamPantalla) == (admJuego.obj[j].MundoX / admJuego.tamPantalla) &&
-							(jugadorY / admJuego.tamPantalla) == (admJuego.obj[j].MundoY / admJuego.tamPantalla)) {
+					if ((jugadorX / admJuego.tamPantalla+1) == (admJuego.obj[j].MundoX / admJuego.tamPantalla) &&
+							(jugadorY / admJuego.tamPantalla+1) == (admJuego.obj[j].MundoY / admJuego.tamPantalla)) {
 						cont++;
+						System.out.println("HOLAAAAA");
 					}
 				}
 			}

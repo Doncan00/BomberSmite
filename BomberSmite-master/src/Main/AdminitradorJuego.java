@@ -205,10 +205,19 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 			vidascantidad.vidasnum--;
 		}
 		for (int i=1;i<obj2.length;i++) {
-			if (obj3[i] != null) {
-				Rect fuegoHor = new Rect(obj2[i].MundoX,obj2[i].MundoY,(24*nivelExpl),24);
-				Rect fuegoVer = new Rect (obj3[i].MundoX,obj3[i].MundoY,24,(24*nivelExpl));
+			if (obj2[i] != null && obj3[i] != null) {
+				Rect fuegoHor = new Rect(obj2[i].MundoX-(25*nivelExpl),obj2[i].MundoY-25,(25*nivelExpl+25),20);
+				Rect fuegoVer = new Rect (obj3[i].MundoX-25,obj3[i].MundoY-25,20,(25*nivelExpl+25));
+				System.out.println(fuegoVer.x);
+				System.out.println(fuegoVer.y);
+
 				if(jug.colision(fuegoVer) || jug.colision(fuegoHor)){
+					if(jug.colision(fuegoHor)){
+						System.out.println("Hor");
+					}
+					if(jug.colision(fuegoVer)){
+						System.out.println("Ver");
+					}
 					muerto=1;
 				}
 
@@ -217,6 +226,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 					enemigo1.ey=0;
 					enemigo1.ew=0;
 					enemigo1.eh=0;
+					enemigo1.evelocidad=0;
 					enemigo1.edown1=null;
 				}
 				if(enem2.colision(fuegoVer) || enem2.colision(fuegoHor)){
@@ -224,14 +234,16 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 					enemigo2.ey=0;
 					enemigo2.ew=0;
 					enemigo2.eh=0;
+					enemigo2.evelocidad=0;
 					enemigo2.edown1=null;
 				}
-				if(enem2.colision(fuegoVer) || enem2.colision(fuegoHor)){
-					enemigo2.ex=0;
-					enemigo2.ey=0;
-					enemigo2.ew=0;
-					enemigo2.eh=0;
-					enemigo2.edown1=null;
+				if(enem3.colision(fuegoVer) || enem3.colision(fuegoHor)){
+					enemigo3.ex=0;
+					enemigo3.ey=0;
+					enemigo3.ew=0;
+					enemigo3.eh=0;
+					enemigo3.evelocidad=0;
+					enemigo3.edown1=null;
 				}
 
 			}

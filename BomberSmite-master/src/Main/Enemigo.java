@@ -15,6 +15,9 @@ public class Enemigo {
 	public int enemigodireccion;
 	public Rectangle ehitBox;
 	public boolean eColisiOn = false;
+
+	public String eultimadireccion;
+
 	public int ehitBoxX,ehitBoxY;
 	public int eDefaulthitBoxX,eDefaulthitBoxY;
 	public BufferedImage up1, up2, edown1, down2, left1, left2, right1, right2;
@@ -109,6 +112,7 @@ public class Enemigo {
 					ex += evelocidad;
 					break;
 				}
+				eultimadireccion=edireccion;
 			}
 			
 		}

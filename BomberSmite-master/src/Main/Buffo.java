@@ -22,27 +22,26 @@ public class Buffo {
 		}
 		
 	}
-	
-public void draw (Graphics2D g2, AdminitradorJuego admJuego) {
-		
-	
-	if (!speed1) {		
-		g2.drawImage(imagen, 430, 305, 15, 15,null);
-	if (admJuego.jugador.hitBoxX == 430 && admJuego.jugador.hitBoxY == 305) {
-		admJuego.jugador.velocidad++;
-		speed1 = true;
-	}
-	}
-	
-	if (!speed2) {
-		
-		g2.drawImage(imagen, 55, 180, 15, 15,null);
-	if ((admJuego.jugador.x > 50 && admJuego.jugador.x < 70) && (admJuego.jugador.y > 170 && admJuego.jugador.y < 190)){
-		System.out.println("adentro");
-		admJuego.jugador.velocidad++;
-		speed2 = true;
-	}
-	}
+
+	public void draw (Graphics2D g2, AdminitradorJuego admJuego) {
+
+
+		if (!speed1) {
+			g2.drawImage(imagen, 430, 305, 15, 15,null);
+			if ((admJuego.jugador.x > 420 &&  admJuego.jugador.x < 450)&& (admJuego.jugador.y > 295 && admJuego.jugador.y < 320)) {
+				admJuego.jugador.velocidad++;
+				speed1 = true;
+			}
+		}
+
+		if (!speed2) {
+
+			g2.drawImage(imagen, 55, 180, 15, 15,null);
+			if ((admJuego.jugador.x > 45 && admJuego.jugador.x < 70) && (admJuego.jugador.y > 170 && admJuego.jugador.y < 190)){
+				admJuego.jugador.velocidad++;
+				speed2 = true;
+			}
+		}
 	}
 
 }

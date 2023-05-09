@@ -24,7 +24,9 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 
 	public int segundos=0,s2=0;
 
-	public int ms=0,ms2=0;
+	public int ms=0;
+
+	public int[] ms2={0,0,0,0,0};
 
 	public final int tamPantalla = escalaOriginal * escala; //25x25 CUADROS
 	public final int maxColPantalla = 40;
@@ -52,11 +54,11 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 	public Enemigo enemigo4 = new Enemigo(this);
 	public Enemigo enemigo5 = new Enemigo(this);
 	public Enemigo enemigo6 = new Enemigo(this);
-	
-	public int nivelExpl = 2;
 
-	public Clip clip,clipm,clipgo;
-	public AudioInputStream audioInputStream,maudioInputStream,goaudioInputStream;
+	public int nivelExpl = 3;
+
+	public Clip clip,clipm,clipgo,clipex,clipgg;
+	public AudioInputStream audioInputStream,maudioInputStream,goaudioInputStream,exaudioInputStream,ggaudioinputStream;
 
 	public int muerto=0;
 
@@ -101,7 +103,14 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		HiloBomba hiloBomba = new HiloBomba(aux,aSetter);
 		if (aux != 0) {
 			hiloBomba.start();
+			for(int i=0;i<obj.length;i++){
+				if(obj[i]!=null){
+					ms2[i]=0;
+				}
+			}
+
 		}
+
 		
 	}
 	
@@ -154,7 +163,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 						enemigo4.evelocidad=0;
 						enemigo5.evelocidad=0;
 						enemigo6.evelocidad=0;
-						jugador.velocidad=0;
+
 
 
 						try {
@@ -226,20 +235,150 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 			muerto=1;
 			vidascantidad.vidasnum--;
 		}
+
+		for (int i=1;i<obj.length;i++) {
+			if (obj[i] != null) {
+
+				Rect bomba = new Rect(obj[i].MundoX-25, obj[i].MundoY-25, 25, 25);
+
+
+				if (enem1.colision(bomba)){
+					if (enemigo1.eultimadireccion =="arriba") {
+						enemigo1.ey += enemigo1.evelocidad;
+						enemigo1.edireccion="abajo";
+
+					}
+					if (enemigo1.eultimadireccion =="abajo") {
+						enemigo1.ey -= enemigo1.evelocidad;
+						enemigo1.edireccion="arriba";
+					}
+					if (enemigo1.eultimadireccion =="izquierda") {
+						enemigo1.ex += enemigo1.evelocidad;
+						enemigo1.edireccion="derecha";
+					}
+					if (enemigo1.eultimadireccion =="derecha") {
+						enemigo1.ex -= enemigo1.evelocidad;
+						enemigo1.edireccion="izquierda";
+
+					}
+
+				}
+				if (enem2.colision(bomba)){
+					if (enemigo2.eultimadireccion =="arriba") {
+						enemigo2.ey += enemigo2.evelocidad;
+						enemigo2.edireccion="abajo";
+
+					}
+					if (enemigo2.eultimadireccion =="abajo") {
+						enemigo2.ey -= enemigo2.evelocidad;
+						enemigo2.edireccion="arriba";
+					}
+					if (enemigo2.eultimadireccion =="izquierda") {
+						enemigo2.ex += enemigo2.evelocidad;
+						enemigo2.edireccion="derecha";
+					}
+					if (enemigo2.eultimadireccion =="derecha") {
+						enemigo2.ex -= enemigo2.evelocidad;
+						enemigo2.edireccion="izquierda";
+
+					}
+
+				}
+				if (enem3.colision(bomba)){
+					if (enemigo3.eultimadireccion =="arriba") {
+						enemigo3.ey += enemigo3.evelocidad;
+						enemigo3.edireccion="abajo";
+
+					}
+					if (enemigo3.eultimadireccion =="abajo") {
+						enemigo3.ey -= enemigo3.evelocidad;
+						enemigo3.edireccion="arriba";
+					}
+					if (enemigo3.eultimadireccion =="izquierda") {
+						enemigo3.ex += enemigo3.evelocidad;
+						enemigo3.edireccion="derecha";
+					}
+					if (enemigo3.eultimadireccion =="derecha") {
+						enemigo3.ex -= enemigo3.evelocidad;
+						enemigo3.edireccion="izquierda";
+
+					}
+
+				}
+				if (enem4.colision(bomba)){
+					if (enemigo4.eultimadireccion =="arriba") {
+						enemigo4.ey += enemigo4.evelocidad;
+						enemigo4.edireccion="abajo";
+
+					}
+					if (enemigo4.eultimadireccion =="abajo") {
+						enemigo4.ey -= enemigo4.evelocidad;
+						enemigo4.edireccion="arriba";
+					}
+					if (enemigo4.eultimadireccion =="izquierda") {
+						enemigo4.ex += enemigo4.evelocidad;
+						enemigo4.edireccion="derecha";
+					}
+					if (enemigo4.eultimadireccion =="derecha") {
+						enemigo4.ex -= enemigo4.evelocidad;
+						enemigo4.edireccion="izquierda";
+
+					}
+
+				}
+				if (enem5.colision(bomba)){
+					if (enemigo5.eultimadireccion =="arriba") {
+						enemigo5.ey += enemigo5.evelocidad;
+						enemigo5.edireccion="abajo";
+
+					}
+					if (enemigo5.eultimadireccion =="abajo") {
+						enemigo5.ey -= enemigo5.evelocidad;
+						enemigo5.edireccion="arriba";
+					}
+					if (enemigo5.eultimadireccion =="izquierda") {
+						enemigo5.ex += enemigo5.evelocidad;
+						enemigo5.edireccion="derecha";
+					}
+					if (enemigo5.eultimadireccion =="derecha") {
+						enemigo5.ex -= enemigo5.evelocidad;
+						enemigo5.edireccion="izquierda";
+
+					}
+
+				}
+				if (enem6.colision(bomba)){
+					if (enemigo6.eultimadireccion =="arriba") {
+						enemigo6.ey += enemigo6.evelocidad;
+						enemigo6.edireccion="abajo";
+
+					}
+					if (enemigo6.eultimadireccion =="abajo") {
+						enemigo6.ey -= enemigo6.evelocidad;
+						enemigo6.edireccion="arriba";
+					}
+					if (enemigo6.eultimadireccion =="izquierda") {
+						enemigo6.ex += enemigo6.evelocidad;
+						enemigo6.edireccion="derecha";
+					}
+					if (enemigo6.eultimadireccion =="derecha") {
+						enemigo6.ex -= enemigo6.evelocidad;
+						enemigo6.edireccion="izquierda";
+
+					}
+
+				}
+				repaint();
+			}
+		}
 		for (int i=1;i<obj2.length;i++) {
 			if (obj2[i] != null && obj3[i] != null) {
-				Rect fuegoHor = new Rect(obj2[i].MundoX-25,obj2[i].MundoY-25,(25*nivelExpl+25),20);
-				Rect fuegoVer = new Rect (obj3[i].MundoX-25,obj3[i].MundoY-25,20,(25*nivelExpl+25));
-				System.out.println(fuegoHor.x);
-				System.out.println(fuegoHor.y);
+				Rect fuegoHor = new Rect(obj2[i].MundoX-(25*nivelExpl),obj2[i].MundoY-25,(25*nivelExpl+25),23);
+				Rect fuegoVer = new Rect (obj3[i].MundoX-25,obj3[i].MundoY-25,23,(25*nivelExpl+25));
+
 
 				if(jug.colision(fuegoVer) || jug.colision(fuegoHor)){
-					if(jug.colision(fuegoHor)){
-						System.out.println("Hor");
-					}
-					if(jug.colision(fuegoVer)){
-						System.out.println("Ver");
-					}
+					vidascantidad.vidasnum--;
 					muerto=1;
 				}
 
@@ -296,7 +435,14 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		}
 		
 		for (int i=1;i<obj2.length;i++) {
+
 			if (obj2[i] != null && obj3[i] != null) {
+
+				if(ms2[i]==0){
+					SonidoExplosion();
+					ms2[i]=1;
+				}
+
 				Rect fuegoHor = new Rect(obj2[i].MundoX,obj2[i].MundoY,(25*nivelExpl),25);
 				Rect fuegoVer = new Rect (obj3[i].MundoX,obj3[i].MundoY,25,(25*nivelExpl));
 
@@ -315,7 +461,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 							cont++;
 						}
 						
-						System.out.println("x: "+x+" y: "+y);
+					//	System.out.println("x: "+x+" y: "+y);
 						
 						//Comprobar horizontal
 						switch (numTileMap[x][y]){
@@ -328,6 +474,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 							break;
 						case 0:
 							cont ++;
+
 							break;
 						}
 						}
@@ -346,7 +493,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 							cont++;
 						}
 						
-						System.out.println("x: "+x+" y: "+y);
+					//	System.out.println("x: "+x+" y: "+y);
 						
 						//Comprobar horizontal
 						switch (numTileMap[x][y]){
@@ -359,6 +506,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 							break;
 						case 0:
 							cont ++;
+
 							break;
 						}
 						}
@@ -367,6 +515,9 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 //					}
 //				}
 			}
+		}
+		if(enemigo1.edown1==null && enemigo2.edown1==null && enemigo3.edown1==null && enemigo4.edown1==null && enemigo5.edown1==null && enemigo6.edown1==null  ){
+			SonidoVictoria();
 		}
 	}
 
@@ -458,25 +609,43 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 			ms = 0;
 			jugador.x = 25;
 			jugador.y = 25;
-			enemigo1.setEx(25);
-			enemigo1.setEy(425);
-			enemigo2.setEx(925);
-			enemigo2.setEy(425);
-			enemigo3.setEx(925);
-			enemigo3.setEy(25);
-			enemigo4.setEx(400);
-			enemigo4.setEy(300);
-			enemigo5.setEx(700);
-			enemigo5.setEy(125);
-			enemigo6.setEx(275);
-			enemigo6.setEy(325);
-			enemigo1.evelocidad = 1;
-			enemigo3.evelocidad = 1;
-			enemigo2.evelocidad = 1;
-			enemigo4.evelocidad = 1;
-			enemigo5.evelocidad = 1;
-			enemigo6.evelocidad = 1;
-			jugador.velocidad = 4;
+			if(enemigo1.edown1!=null) {
+				enemigo1.setEx(25);
+				enemigo1.setEy(425);
+				enemigo1.evelocidad = 1;
+			}
+			if(enemigo2.edown1!=null) {
+				enemigo2.setEx(925);
+				enemigo2.setEy(425);
+				enemigo2.evelocidad = 1;
+
+			}
+			if(enemigo3.edown1!=null) {
+				enemigo3.setEx(925);
+				enemigo3.setEy(25);
+				enemigo3.evelocidad = 1;
+			}
+			if(enemigo4.edown1!=null) {
+				enemigo4.setEx(400);
+				enemigo4.setEy(300);
+				enemigo4.evelocidad = 1;
+			}
+			if(enemigo5.edown1!=null) {
+				enemigo5.setEx(700);
+				enemigo5.setEy(125);
+				enemigo5.evelocidad = 1;
+			}
+			if(enemigo6.edown1!=null) {
+				enemigo6.setEx(275);
+				enemigo6.setEy(325);
+				enemigo6.evelocidad = 1;
+			}
+
+
+
+
+
+
 			muerto = 0;
 		}
 	}
@@ -528,5 +697,50 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		vidascantidad.vidasnum=3;
 
 	}
+
+	public void SonidoExplosion () {
+
+		try {
+
+			exaudioInputStream = AudioSystem.getAudioInputStream(
+					AdminitradorJuego.class.getResourceAsStream("/Sonidos/explosion.wav"));
+
+			AudioFormat format = exaudioInputStream.getFormat();
+
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+			clipex = (Clip) AudioSystem.getLine(info);
+			clipex.open(exaudioInputStream);
+			clipex.start();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+
+	}
+	public void SonidoVictoria () {
+
+		try {
+			clip.close();
+
+			ggaudioinputStream = AudioSystem.getAudioInputStream(
+					AdminitradorJuego.class.getResourceAsStream("/Sonidos/ganar.wav"));
+
+			AudioFormat format = ggaudioinputStream.getFormat();
+
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+			clipgg = (Clip) AudioSystem.getLine(info);
+			clipgg.open(ggaudioinputStream);
+			clipgg.start();
+			Thread.sleep(4000);
+			JOptionPane.showMessageDialog(null,"GANASTEEEEE!!!","GG",JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+
+	}
+
 
 }

@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stubdddd
 		JFrame ventana = new JFrame();
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setTitle("BomberSmite");

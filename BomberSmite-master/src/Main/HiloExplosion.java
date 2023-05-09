@@ -20,6 +20,8 @@ public class HiloExplosion extends Thread{
 			Thread.sleep(1000);
 			aj.expl[aux] = false;
 			aj.aSetter.borrarBomba(aux);
+			aj.obj2[aux] = null;
+			aj.obj3[aux] = null;
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

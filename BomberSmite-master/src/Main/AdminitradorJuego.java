@@ -236,6 +236,79 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 
 			}
 		}
+		
+		for (int i=1;i<obj2.length;i++) {
+			if (obj2[i] != null && obj3[i] != null) {
+				Rect fuegoHor = new Rect(obj2[i].MundoX,obj2[i].MundoY,(25*nivelExpl),25);
+				Rect fuegoVer = new Rect (obj3[i].MundoX,obj3[i].MundoY,25,(25*nivelExpl));
+
+//				for (int j=0;j<maxColPantalla;j++) {
+//					for (int jj=0;jj<maxFilPantalla;jj++) {
+						int cont = 0;
+						
+						for (int j=0;j<5;j++) {
+							if (obj2[i] != null && obj3[i] != null) {
+								int x=0,y=0;	
+						x = (obj2[i].MundoX / tamPantalla)-3 + cont;
+						y = (obj2[i].MundoY / tamPantalla)-1;
+						
+						while(x<0) {
+							x=1;
+							cont++;
+						}
+						
+						System.out.println("x: "+x+" y: "+y);
+						
+						//Comprobar horizontal
+						switch (numTileMap[x][y]){
+						case 1:
+							cont++;
+							break;
+						case 2:
+							numTileMap[x][y] = 1;
+							cont++;
+							break;
+						case 0:
+							cont ++;
+							break;
+						}
+						}
+						}
+						cont = 0;
+						
+						for (int j=0;j<5;j++) {
+							if (obj2[i] != null && obj3[i] != null) {
+								int x=0,y=0;	
+						x = (obj2[i].MundoX / tamPantalla)-1 ;
+						y = (obj2[i].MundoY / tamPantalla)-3 + cont;
+						
+						while(y<0) {
+							y=1;
+							cont++;
+						}
+						
+						System.out.println("x: "+x+" y: "+y);
+						
+						//Comprobar horizontal
+						switch (numTileMap[x][y]){
+						case 1:
+							cont++;
+							break;
+						case 2:
+							numTileMap[x][y] = 1;
+							cont++;
+							break;
+						case 0:
+							cont ++;
+							break;
+						}
+						}
+						}
+						
+//					}
+//				}
+			}
+		}
 	}
 
 	public void paintComponent(Graphics g) {

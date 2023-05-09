@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLOutput;
+import java.util.concurrent.TimeUnit;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -20,7 +22,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 	final int escalaOriginal = 5;
 	final int escala = 5;
 
-	public int segundos=0;
+	public int segundos=0,s2=0;
 
 	public int ms=0,ms2=0;
 
@@ -45,8 +47,8 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 
 	public Enemigo enemigo2 = new Enemigo(this);
 
-	public Clip clip,clipm;
-	public AudioInputStream audioInputStream,maudioInputStream;
+	public Clip clip,clipm,clipgo;
+	public AudioInputStream audioInputStream,maudioInputStream,goaudioInputStream;
 
 	public int muerto=0;
 
@@ -102,8 +104,8 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 					/*long currentTiempo = System.nanoTime();
 					System.out.println("Tiempo: "+currentTiempo);*/
 					
-					//1 ACTUALIZA: ACTUALIZA LA INFORMACION COMO LA POSICION DEL PERSONAJE
-					actualizar();
+
+
 
 					ms++;
 					if(ms==60){
@@ -125,34 +127,37 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 						segundos=0;
 					}
 					if(muerto==1){
-						SonidoMuerte();
+
+
+						enemigo1.evelocidad=0;
+						enemigo3.evelocidad=0;
+						enemigo2.evelocidad=0;
+						jugador.velocidad=0;
+
+
 						try {
 
-							Thread.sleep(3000);
+
 							if (vidascantidad.vidasnum==0){
-								vidascantidad.vidasnum=3;
-								System.exit(0);
-							}else {
-								ReproductorDeSonido();
-								segundos = 0;
-								ms = 0;
-								clipm.stop();
-								clipm.close();
-								maudioInputStream.close();
+								SonidoGameOver();
+
+							}else  {
+								SonidoMuerte();
+
 							}
 
-							enemigo1.evelocidad=1;
-							enemigo3.evelocidad=1;
-							enemigo2.evelocidad=1;
-							jugador.velocidad=2;
-							muerto=0;
+
+
 						} catch (Exception e) {
-							throw new RuntimeException(e);
+							System.out.println(e.getMessage());
 						}
+
 
 
 					}
 
+					//1 ACTUALIZA: ACTUALIZA LA INFORMACION COMO LA POSICION DEL PERSONAJE
+					actualizar();
 
 					
 					//2 DRAW: DIBUJA EN PANTALLA LA ACTUALIZACION DE INFORMACION
@@ -191,6 +196,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		Rect enem3 = new Rect(enemigo3.ex, enemigo3.ey, 15, 15);
 		if(jug.colision(enem1) || jug.colision(enem2) || jug.colision(enem3)){
 			muerto=1;
+			vidascantidad.vidasnum--;
 		}
 
 
@@ -275,11 +281,31 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		if(muerto==1) {
+			segundos = 0;
+			ms = 0;
+			jugador.x = 25;
+			jugador.y = 25;
+			enemigo1.setEx(25);
+			enemigo1.setEy(425);
+			enemigo2.setEx(925);
+			enemigo2.setEy(425);
+			enemigo3.setEx(925);
+			enemigo3.setEy(25);
+			enemigo1.evelocidad = 1;
+			enemigo3.evelocidad = 1;
+			enemigo2.evelocidad = 1;
+			jugador.velocidad = 4;
+			muerto = 0;
+		}
 	}
 
 	public void SonidoMuerte () {
 
 		try {
+
+			clip.close();
+
 			maudioInputStream = AudioSystem.getAudioInputStream(
 					AdminitradorJuego.class.getResourceAsStream("/Sonidos/bombermanmuere.wav"));
 
@@ -289,28 +315,37 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 			clipm = (Clip) AudioSystem.getLine(info);
 			clipm.open(maudioInputStream);
 			clipm.start();
-			clip.close();
-			enemigo1.evelocidad=0;
-			enemigo3.evelocidad=0;
-			enemigo2.evelocidad=0;
-			jugador.velocidad=0;
-			jugador.x=25;
-			jugador.y=25;
-			enemigo1.setEy(425);
-			enemigo1.setEx(25);
-			enemigo2.setEy(425);
-			enemigo2.setEx(925);
-			enemigo3.setEx(925);
-			enemigo3.setEy(25);
-			vidascantidad.vidasnum--;
-
-
-
+			Thread.sleep(3000);
 
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		ReproductorDeSonido();
+
+	}
+
+	public void SonidoGameOver () {
+
+		try {
+			clip.close();
+			goaudioInputStream = AudioSystem.getAudioInputStream(
+					AdminitradorJuego.class.getResourceAsStream("/Sonidos/go.wav"));
+
+			AudioFormat format = goaudioInputStream.getFormat();
+
+			DataLine.Info info = new DataLine.Info(Clip.class, format);
+			clipgo = (Clip) AudioSystem.getLine(info);
+			clipgo.open(goaudioInputStream);
+			clipgo.start();
+			Thread.sleep(6500);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		ReproductorDeSonido();
+		vidascantidad.vidasnum=3;
+
 	}
 
 }

@@ -45,7 +45,7 @@ public class Jugador {
 		
 		x = 25;
 		y = 25;
-		velocidad = 2;
+		velocidad = 4;
 		direccion = "abajo";
 		
 	}

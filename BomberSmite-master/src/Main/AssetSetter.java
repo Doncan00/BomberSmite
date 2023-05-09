@@ -32,7 +32,6 @@ public class AssetSetter {
 				admJuego.obj[i] = new OBJ_Bomba();
 				admJuego.obj[i].MundoX = (x * admJuego.tamPantalla);
 				admJuego.obj[i].MundoY = (y * admJuego.tamPantalla);
-				admJuego.obj[i].colision = true;
 				cont=0;
 				return i;
 			}
@@ -41,13 +40,26 @@ public class AssetSetter {
 	}
 	
 	public void explotarBomba(int aux) {
-		int x = admJuego.obj[aux].MundoX;
-		int y = admJuego.obj[aux].MundoY;
+		
+		int x; 
+		int y; 
+		
+		System.out.println(admJuego.obj[aux].MundoX);
+		x= admJuego.obj[aux].MundoX - ((admJuego.nivelExpl-1) * admJuego.tamPantalla);
+		y= admJuego.obj[aux].MundoY;
+
+		System.out.println("x: "+x+" y: "+y);
 		admJuego.obj2[aux] = new OBJ_Fuego();
 		admJuego.obj2[aux].MundoX = x;
 		admJuego.obj2[aux].MundoY = y;
+		
+		x= admJuego.obj[aux].MundoX;
+		y= admJuego.obj[aux].MundoY - ((admJuego.nivelExpl-1) * admJuego.tamPantalla);
+		System.out.println("x: "+x+" y: "+y);
+		admJuego.obj3[aux] = new OBJ_Fuego();
+		admJuego.obj3[aux].MundoX = x;
+		admJuego.obj3[aux].MundoY = y;
 		HiloExplosion hiloExpl = new HiloExplosion(aux,x,y,admJuego);
-		admJuego.obj2[aux].colision = true;
 		hiloExpl.start();
 	}
 	

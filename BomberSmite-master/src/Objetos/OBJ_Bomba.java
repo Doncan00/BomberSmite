@@ -14,6 +14,7 @@ public class OBJ_Bomba extends SuperObjeto{
 		}catch(IOException e) {
 			e.printStackTrace();
 		}
+		colision = true;
 	}
 
 }

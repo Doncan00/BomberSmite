@@ -35,8 +35,9 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 
 	int FPS = 60;
 
+	public int numTileMap[][];
 
-	ControladorTile ControladorT = new ControladorTile(this);
+	ControladorTile ControladorT = new ControladorTile(this,numTileMap);
 	Controles teclas = new Controles();
 	Thread hiloJuego;
 	public Colision cColision = new Colision(this);
@@ -47,7 +48,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 
 	public Enemigo enemigo2 = new Enemigo(this);
 	
-	public int nivelExpl = 4;
+	public int nivelExpl = 3;
 
 	public Clip clip,clipm,clipgo;
 	public AudioInputStream audioInputStream,maudioInputStream,goaudioInputStream;
@@ -57,10 +58,12 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 	public Enemigo enemigo3 = new Enemigo(this);
 
 	public Vidas vidascantidad = new Vidas(3);
-	public SuperObjeto obj[] = new SuperObjeto[4]; 
-	public SuperObjeto obj2[] = new SuperObjeto[4]; 
-	public SuperObjeto obj3[] = new SuperObjeto[4];
-	public boolean[] expl = new boolean[4];
+	public SuperObjeto obj[] = new SuperObjeto[5];
+	public SuperObjeto obj2[] = new SuperObjeto[5];
+	public SuperObjeto obj3[] = new SuperObjeto[5];
+	
+	
+	public boolean[] expl = new boolean[5];
 	
 	public AdminitradorJuego() {
 		for (int i=0; i<expl.length; i++) {
@@ -200,9 +203,15 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		if(jug.colision(enem1) || jug.colision(enem2) || jug.colision(enem3)){
 			muerto=1;
 			vidascantidad.vidasnum--;
+			
+			for (int i=1;i<obj2.length;i++) {
+				if (obj2[i] != null) {					
+				Rect fuegoHor = new Rect(obj2[i].MundoX,obj2[i].MundoY,(25*nivelExpl),25);
+				Rect fuegoVer = new Rect (obj3[i].MundoX,obj3[i].MundoY,25,(25*nivelExpl));
+				}
+			}
+			
 		}
-
-
 	}
 	
 	public void paintComponent(Graphics g) {

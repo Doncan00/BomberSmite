@@ -14,12 +14,13 @@ public class ControladorTile {
 	public int numTileMap[][];
 
 	
-	public ControladorTile(AdminitradorJuego aj) {
+	public ControladorTile(AdminitradorJuego aj, int numTileMap[][]) {
 		
 		this.aj = aj;
+		this.numTileMap = numTileMap;
 		
 		tile = new Tile[10];
-		numTileMap = new int[aj.maxColPantalla][aj.maxFilPantalla];
+		this.numTileMap = new int[aj.maxColPantalla][aj.maxFilPantalla];
 		
 		cargarTile();
 		cargarMapa("/mapas/mapa1.txt");
@@ -38,11 +39,7 @@ public class ControladorTile {
 			
 			tile[2] = new Tile();
 			tile[2].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Ladrillo.png"));
-			tile[2].colision = true;
-			
-			tile[3] = new Tile();
-			tile[3].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Ladrillo.png"));
-			tile[3].colision = true;
+//			tile[2].colision = true;
 
 			
 		}catch(IOException e) {

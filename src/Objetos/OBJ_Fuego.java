@@ -10,7 +10,13 @@ public class OBJ_Fuego extends SuperObjeto{
 		// TODO Auto-generated constructor stub
 		nombre = "Fuego";
 		try {
-			imagen2 = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/Explosion.png"));
+			centro = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/Explosion.png"));
+			izquierda = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/ExplosionIzq.png"));
+			derecha = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/ExplosionDer.png"));
+			abajo = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/ExplosionAba.png"));
+			arriba = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/ExplosionArr.png"));
+			horizontal = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/ExplosionHor.png"));
+			vertical = ImageIO.read(getClass().getResourceAsStream("/ObjetosImg/ExplosionVer.png"));
 		}catch(IOException e) {
 			e.printStackTrace();
 		}

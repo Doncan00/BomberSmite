@@ -43,9 +43,9 @@ public class Jugador {
 	}
 	public void posicionBase() {
 		
-		x = 27;
-		y = 27;
-		velocidad = 2;
+		x = 25;
+		y = 25;
+		velocidad = 1;
 		direccion = "abajo";
 		
 	}

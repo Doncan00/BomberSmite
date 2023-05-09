@@ -14,12 +14,12 @@ public class ControladorTile {
 	public int numTileMap[][];
 
 	
-	public ControladorTile(AdminitradorJuego aj) {
+	public ControladorTile(AdminitradorJuego aj, int numTileMap[][]) {
 		
 		this.aj = aj;
-		
+		this.numTileMap = numTileMap;
 		tile = new Tile[10];
-		numTileMap = new int[aj.maxColPantalla][aj.maxFilPantalla];
+		aj.numTileMap = new int[aj.maxColPantalla][aj.maxFilPantalla];
 		
 		cargarTile();
 		cargarMapa("/mapas/mapa1.txt");
@@ -38,6 +38,8 @@ public class ControladorTile {
 			
 			tile[2] = new Tile();
 			tile[2].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Ladrillo.png"));
+			tile[2].colision = true;
+
 			
 		}catch(IOException e) {
 			e.printStackTrace();
@@ -64,7 +66,7 @@ public class ControladorTile {
 					
 					int num = Integer.parseInt(numeros[col]);
 					
-					numTileMap[col][fil] = num;
+					aj.numTileMap[col][fil] = num;
 					col++;
 				}
 				if(col == aj.maxColPantalla) {
@@ -88,12 +90,11 @@ public class ControladorTile {
 		
 		while(col < aj.maxColPantalla && fila < aj.maxFilPantalla) {
 			
-			int numTile = numTileMap[col][fila];
+			int numTile = aj.numTileMap[col][fila];
 			
 			g2.drawImage(tile[numTile].imagen, x, y, aj.tamPantalla, aj.tamPantalla, null);
 			/*g2.setColor(Color.blue);
 			g2.fillRect(x, y, 25, 25);*/
-			
 			col++;
 			x+= aj.tamPantalla;
 			

@@ -17,12 +17,11 @@ public class HiloExplosion extends Thread{
 		try {
 			
 			aj.expl[aux] = true;
-			System.out.println(aj.expl[aux]);
-			System.out.println(aux);
 			Thread.sleep(1000);
 			aj.expl[aux] = false;
-			System.out.println(aj.expl[aux]);
 			aj.aSetter.borrarBomba(aux);
+			aj.obj2[aux] = null;
+			aj.obj3[aux] = null;
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

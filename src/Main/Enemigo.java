@@ -8,13 +8,16 @@ import java.util.Random;
 
 public class Enemigo {
 
-	public int ex , ey;
+	public int ex , ey,eh,ew;
 	public int evelocidad;
 	public String edireccion;
 
 	public int enemigodireccion;
 	public Rectangle ehitBox;
 	public boolean eColisiOn = false;
+
+	public String eultimadireccion;
+
 	public int ehitBoxX,ehitBoxY;
 	public int eDefaulthitBoxX,eDefaulthitBoxY;
 	public BufferedImage up1, up2, edown1, down2, left1, left2, right1, right2;
@@ -36,7 +39,7 @@ public class Enemigo {
 		
 		this.aj = aj;
 
-		ehitBox = new Rectangle(4, 8, 15, 15);
+		ehitBox = new Rectangle(0, 0, 24, 24);
 		
 		eDefaulthitBoxX = ehitBox.x;
 		eDefaulthitBoxY = ehitBox.y;
@@ -49,9 +52,11 @@ public class Enemigo {
 	}
 	public void posicionBaseEnemigo() {
 		
-		ex = 27;
-		ey = 27;
-		evelocidad = 2;
+		ex = 25;
+		ey = 25;
+		ew=24;
+		eh=24;
+		evelocidad = 1;
 		edireccion = "abajo";
 		
 	}
@@ -107,6 +112,7 @@ public class Enemigo {
 					ex += evelocidad;
 					break;
 				}
+				eultimadireccion=edireccion;
 			}
 			
 		}
@@ -141,7 +147,11 @@ public class Enemigo {
 
 			break;
 		}
-		g2.drawImage(imagen, ex, ey, aj.tamPantalla, aj.tamPantalla, null);
+
+		g2.drawImage(imagen, ex, ey, 25, 25, null);
+	//	g2.fillRect(ex,ey,25,25);
 	}
+
+
 
 }

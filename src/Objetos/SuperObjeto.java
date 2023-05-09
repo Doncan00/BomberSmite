@@ -8,7 +8,7 @@ import Main.AdminitradorJuego;
 
 public class SuperObjeto {
 
-	public BufferedImage imagen,imagen2;
+	public BufferedImage imagen,centro,arriba,abajo,derecha,izquierda,horizontal,vertical;
 	public String nombre;
 	public boolean colision = false;
 	public int MundoX, MundoY,ExplX,ExplY;
@@ -29,7 +29,29 @@ public class SuperObjeto {
 		PantallaX = ((MundoX - admJuego.jugador.hitBoxX) / admJuego.tamPantalla) * admJuego.tamPantalla;
 		PantallaY = ((MundoY - admJuego.jugador.hitBoxY) / admJuego.tamPantalla) * admJuego.tamPantalla;
 
-		g2.drawImage(imagen2, PantallaX, PantallaY, 25, 25, null);
+		//Centro
+		g2.drawImage(centro, PantallaX, PantallaY, 25, 25, null);
+		
+		//Explosion  nivel 2
+		if  (admJuego.nivelExpl == 2) {
+			g2.drawImage(derecha, PantallaX + admJuego.tamPantalla, PantallaY, 25, 25, null);
+			g2.drawImage(izquierda, PantallaX - admJuego.tamPantalla, PantallaY, 25, 25, null);
+			g2.drawImage(arriba, PantallaX, PantallaY - admJuego.tamPantalla , 25, 25, null);
+			g2.drawImage(abajo, PantallaX, PantallaY + admJuego.tamPantalla, 25, 25, null);
+		}
+		//Explosion nivel 3
+		if  (admJuego.nivelExpl == 3) {
+			g2.drawImage(horizontal, PantallaX + admJuego.tamPantalla, PantallaY, 25, 25, null);
+			g2.drawImage(horizontal, PantallaX - admJuego.tamPantalla, PantallaY, 25, 25, null);
+			g2.drawImage(vertical, PantallaX, PantallaY - admJuego.tamPantalla , 25, 25, null);
+			g2.drawImage(vertical, PantallaX, PantallaY + admJuego.tamPantalla, 25, 25, null);
+			
+			g2.drawImage(derecha, PantallaX + admJuego.tamPantalla*2, PantallaY, 25, 25, null);
+			g2.drawImage(izquierda, PantallaX - admJuego.tamPantalla*2, PantallaY, 25, 25, null);
+			g2.drawImage(arriba, PantallaX, PantallaY - admJuego.tamPantalla *2, 25, 25, null);
+			g2.drawImage(abajo, PantallaX, PantallaY + admJuego.tamPantalla*2, 25, 25, null);
+			
+		}
 		//				System.out.println(PantallaX+"         "+PantallaY);
 		//				g2.drawImage(imagen2,)
 	}

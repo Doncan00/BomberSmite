@@ -6,9 +6,11 @@ public class AssetSetter {
 
 	AdminitradorJuego admJuego;
 	public boolean expl[] = new boolean[4];
+	public Tile[] tile;
 	
 	public AssetSetter(AdminitradorJuego admJuego) {
 		this.admJuego = admJuego;
+		tile = new Tile[10];
 	}
 	
 	public int colocarObjeto() {
@@ -38,12 +40,22 @@ public class AssetSetter {
 	}
 	
 	public void explotarBomba(int aux) {
-		int x = admJuego.obj[aux].MundoX;
-		int y = admJuego.obj[aux].MundoY;
+		
+		int x; 
+		int y; 
+		
+		x= admJuego.obj[aux].MundoX - ((admJuego.nivelExpl-1) * admJuego.tamPantalla);
+		y= admJuego.obj[aux].MundoY;
+
 		admJuego.obj2[aux] = new OBJ_Fuego();
 		admJuego.obj2[aux].MundoX = x;
 		admJuego.obj2[aux].MundoY = y;
-		System.out.println(admJuego.obj2[aux].MundoX + "    " + admJuego.obj2[aux].MundoY);
+		
+		x= admJuego.obj[aux].MundoX;
+		y= admJuego.obj[aux].MundoY - ((admJuego.nivelExpl-1) * admJuego.tamPantalla);
+		admJuego.obj3[aux] = new OBJ_Fuego();
+		admJuego.obj3[aux].MundoX = x;
+		admJuego.obj3[aux].MundoY = y;
 		HiloExplosion hiloExpl = new HiloExplosion(aux,x,y,admJuego);
 		hiloExpl.start();
 	}

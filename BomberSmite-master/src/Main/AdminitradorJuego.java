@@ -47,6 +47,10 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 	public Enemigo enemigo1 = new Enemigo(this);
 
 	public Enemigo enemigo2 = new Enemigo(this);
+
+	public Enemigo enemigo4 = new Enemigo(this);
+	public Enemigo enemigo5 = new Enemigo(this);
+	public Enemigo enemigo6 = new Enemigo(this);
 	
 	public int nivelExpl = 2;
 
@@ -70,10 +74,18 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 			expl[i] = false;
 		}
 		ReproductorDeSonido();
+		enemigo1.setEx(25);
 		enemigo1.setEy(425);
-		enemigo2.setEy(425);
 		enemigo2.setEx(925);
+		enemigo2.setEy(425);
 		enemigo3.setEx(925);
+		enemigo3.setEy(25);
+		enemigo4.setEx(400);
+		enemigo4.setEy(300);
+		enemigo5.setEx(700);
+		enemigo5.setEy(125);
+		enemigo6.setEx(275);
+		enemigo6.setEy(325);
 		this.setSize(anchoPantalla, alturaPantalla);
 		this.setBackground(Color.LIGHT_GRAY);
 		this.setDoubleBuffered(true);
@@ -138,6 +150,9 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 						enemigo1.evelocidad=0;
 						enemigo3.evelocidad=0;
 						enemigo2.evelocidad=0;
+						enemigo4.evelocidad=0;
+						enemigo5.evelocidad=0;
+						enemigo6.evelocidad=0;
 						jugador.velocidad=0;
 
 
@@ -195,12 +210,18 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		enemigo1.actualizarenemigo();
 		enemigo2.actualizarenemigo();
 		enemigo3.actualizarenemigo();
+		enemigo4.actualizarenemigo();
+		enemigo5.actualizarenemigo();
+		enemigo6.actualizarenemigo();
 		jugador.actualizar();
 		Rect jug = new Rect(jugador.x, jugador.y, 15, 15);
 		Rect enem1 = new Rect(enemigo1.ex, enemigo1.ey, enemigo1.ew, enemigo1.eh);
 		Rect enem2 = new Rect(enemigo2.ex, enemigo2.ey, enemigo2.ew, enemigo2.eh);
 		Rect enem3 = new Rect(enemigo3.ex, enemigo3.ey, enemigo3.ew, enemigo3.eh);
-		if(jug.colision(enem1) || jug.colision(enem2) || jug.colision(enem3)){
+		Rect enem4 = new Rect(enemigo4.ex, enemigo4.ey, enemigo4.ew, enemigo4.eh);
+		Rect enem5 = new Rect(enemigo5.ex, enemigo5.ey, enemigo5.ew, enemigo5.eh);
+		Rect enem6 = new Rect(enemigo6.ex, enemigo6.ey, enemigo6.ew, enemigo6.eh);
+		if(jug.colision(enem1) || jug.colision(enem2) || jug.colision(enem3) || jug.colision(enem4) || jug.colision(enem5) || jug.colision(enem6)){
 			muerto=1;
 			vidascantidad.vidasnum--;
 		}
@@ -208,8 +229,8 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 			if (obj2[i] != null && obj3[i] != null) {
 				Rect fuegoHor = new Rect(obj2[i].MundoX-25,obj2[i].MundoY-25,(25*nivelExpl+25),20);
 				Rect fuegoVer = new Rect (obj3[i].MundoX-25,obj3[i].MundoY-25,20,(25*nivelExpl+25));
-				System.out.println(fuegoVer.x);
-				System.out.println(fuegoVer.y);
+				System.out.println(fuegoHor.x);
+				System.out.println(fuegoHor.y);
 
 				if(jug.colision(fuegoVer) || jug.colision(fuegoHor)){
 					if(jug.colision(fuegoHor)){
@@ -244,6 +265,30 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 					enemigo3.eh=0;
 					enemigo3.evelocidad=0;
 					enemigo3.edown1=null;
+				}
+				if(enem4.colision(fuegoVer) || enem4.colision(fuegoHor)){
+					enemigo4.ex=0;
+					enemigo4.ey=0;
+					enemigo4.ew=0;
+					enemigo4.eh=0;
+					enemigo4.evelocidad=0;
+					enemigo4.edown1=null;
+				}
+				if(enem5.colision(fuegoVer) || enem5.colision(fuegoHor)){
+					enemigo5.ex=0;
+					enemigo5.ey=0;
+					enemigo5.ew=0;
+					enemigo5.eh=0;
+					enemigo5.evelocidad=0;
+					enemigo5.edown1=null;
+				}
+				if(enem6.colision(fuegoVer) || enem6.colision(fuegoHor)){
+					enemigo6.ex=0;
+					enemigo6.ey=0;
+					enemigo6.ew=0;
+					enemigo6.eh=0;
+					enemigo6.evelocidad=0;
+					enemigo6.edown1=null;
 				}
 
 			}
@@ -350,6 +395,9 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		enemigo1.dibujar(g2);
 		enemigo2.dibujar(g2);
 		enemigo3.dibujar(g2);
+		enemigo4.dibujar(g2);
+		enemigo5.dibujar(g2);
+		enemigo6.dibujar(g2);
 		vidascantidad.dibujar(g2);
 
 
@@ -414,9 +462,18 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 			enemigo2.setEy(425);
 			enemigo3.setEx(925);
 			enemigo3.setEy(25);
+			enemigo4.setEx(400);
+			enemigo4.setEy(300);
+			enemigo5.setEx(700);
+			enemigo5.setEy(125);
+			enemigo6.setEx(275);
+			enemigo6.setEy(325);
 			enemigo1.evelocidad = 1;
 			enemigo3.evelocidad = 1;
 			enemigo2.evelocidad = 1;
+			enemigo4.evelocidad = 1;
+			enemigo5.evelocidad = 1;
+			enemigo6.evelocidad = 1;
 			jugador.velocidad = 4;
 			muerto = 0;
 		}

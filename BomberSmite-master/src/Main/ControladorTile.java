@@ -39,6 +39,10 @@ public class ControladorTile {
 			tile[2] = new Tile();
 			tile[2].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Ladrillo.png"));
 			tile[2].colision = true;
+			
+			tile[3] = new Tile();
+			tile[3].imagen = ImageIO.read(getClass().getResourceAsStream("/tiles/Ladrillo.png"));
+			tile[3].colision = true;
 
 			
 		}catch(IOException e) {

@@ -6,9 +6,11 @@ public class AssetSetter {
 
 	AdminitradorJuego admJuego;
 	public boolean expl[] = new boolean[4];
+	public Tile[] tile;
 	
 	public AssetSetter(AdminitradorJuego admJuego) {
 		this.admJuego = admJuego;
+		tile = new Tile[10];
 	}
 	
 	public int colocarObjeto() {
@@ -30,6 +32,7 @@ public class AssetSetter {
 				admJuego.obj[i] = new OBJ_Bomba();
 				admJuego.obj[i].MundoX = (x * admJuego.tamPantalla);
 				admJuego.obj[i].MundoY = (y * admJuego.tamPantalla);
+				admJuego.obj[i].colision = true;
 				cont=0;
 				return i;
 			}
@@ -44,6 +47,7 @@ public class AssetSetter {
 		admJuego.obj2[aux].MundoX = x;
 		admJuego.obj2[aux].MundoY = y;
 		HiloExplosion hiloExpl = new HiloExplosion(aux,x,y,admJuego);
+		admJuego.obj2[aux].colision = true;
 		hiloExpl.start();
 	}
 	

@@ -46,6 +46,8 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 	public Enemigo enemigo1 = new Enemigo(this);
 
 	public Enemigo enemigo2 = new Enemigo(this);
+	
+	public int nivelExpl = 4;
 
 	public Clip clip,clipm,clipgo;
 	public AudioInputStream audioInputStream,maudioInputStream,goaudioInputStream;
@@ -57,6 +59,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 	public Vidas vidascantidad = new Vidas(3);
 	public SuperObjeto obj[] = new SuperObjeto[4]; 
 	public SuperObjeto obj2[] = new SuperObjeto[4]; 
+	public SuperObjeto obj3[] = new SuperObjeto[4];
 	public boolean[] expl = new boolean[4];
 	
 	public AdminitradorJuego() {

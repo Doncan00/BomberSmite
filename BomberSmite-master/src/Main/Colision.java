@@ -120,68 +120,6 @@ public class Colision {
 				}
 				break;
 		}
-	}
-public int revisarObjeto(Jugador jugador, boolean jugador1) {
-		
-		int index = 999;
-		
-		for(int i = 0; i < aj.obj.length; i++) {
-			
-			if (aj.obj[i] != null) {
-				
-				jugador.hitBox.x = jugador.x + jugador.hitBox.x;
-				jugador.hitBox.y = jugador.y + jugador.hitBox.y;
-				
-				aj.obj[i].hitBox.x = aj.obj[i].DefaulthitBoxX + aj.obj[i].hitBox.x;
-				aj.obj[i].hitBox.y = aj.obj[i].DefaulthitBoxY + aj.obj[i].hitBox.y;
-				
-				switch(jugador.direccion) {
-				case "arriba":
-					jugador.hitBox.y -= jugador.velocidad;
-					if(jugador.hitBox.intersects(aj.obj[i].hitBox)) {
-						System.out.println("Colision Arriba");
-						if(aj.obj[i].colision == true) {
-							jugador.ColisiOn = true;
-						}
-					}
-					break;
-				case "abajo":
-					jugador.hitBox.y += jugador.velocidad;
-					if(jugador.hitBox.intersects(aj.obj[i].hitBox)) {
-						System.out.println("Colision Abajo");
-						if(aj.obj[i].colision == true) {
-							jugador.ColisiOn = true;
-						}
-					}
-					break;
-				case "izquierda":
-					jugador.hitBox.x -= jugador.velocidad;
-					if(jugador.hitBox.intersects(aj.obj[i].hitBox)) {
-						System.out.println("Colision Izquierda");
-						if(aj.obj[i].colision == true) {
-							jugador.ColisiOn = true;
-						}
-					}
-					break;
-				case "derecha":
-					jugador.hitBox.x += jugador.velocidad;
-					if(jugador.hitBox.intersects(aj.obj[i].hitBox)) {
-						System.out.println("Colision Derecha");
-						if(aj.obj[i].colision == true) {
-							jugador.ColisiOn = true;
-						}
-					break;
-					}
-				}
-				jugador.hitBox.x = jugador.DefaulthitBoxX;
-				jugador.hitBox.y = jugador.DefaulthitBoxY;
-				aj.obj[i].hitBox.x = aj.obj[i].DefaulthitBoxX;
-				aj.obj[i].hitBox.y = aj.obj[i].DefaulthitBoxY;
 
-			}
-		}
-
-		return index;
 	}
-	
 }

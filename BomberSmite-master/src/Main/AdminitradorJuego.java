@@ -40,6 +40,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 	ControladorTile ControladorT = new ControladorTile(this,numTileMap);
 	Controles teclas = new Controles();
 	Thread hiloJuego;
+	public Buffo bff = new Buffo();
 	public Colision cColision = new Colision(this);
 	public AssetSetter aSetter = new AssetSetter(this);
 	public Jugador jugador = new Jugador(this, teclas);
@@ -399,6 +400,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		enemigo5.dibujar(g2);
 		enemigo6.dibujar(g2);
 		vidascantidad.dibujar(g2);
+		bff.draw(g2, this);
 
 
 

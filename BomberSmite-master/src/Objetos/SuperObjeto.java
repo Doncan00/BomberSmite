@@ -13,6 +13,8 @@ public class SuperObjeto {
 	public boolean colision = false;
 	public int MundoX, MundoY,ExplX,ExplY;
 	public Rectangle hitBox = new Rectangle(0,0,25,25);
+	public int DefaulthitBoxX = 0;
+	public int DefaulthitBoxY = 0;
 	int PantallaX;
 	int PantallaY;
 	

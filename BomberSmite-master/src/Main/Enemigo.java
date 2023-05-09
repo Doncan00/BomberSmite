@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Enemigo {
 
-	public int ex , ey;
+	public int ex , ey,eh,ew;
 	public int evelocidad;
 	public String edireccion;
 
@@ -51,6 +51,8 @@ public class Enemigo {
 		
 		ex = 25;
 		ey = 25;
+		ew=24;
+		eh=24;
 		evelocidad = 1;
 		edireccion = "abajo";
 		

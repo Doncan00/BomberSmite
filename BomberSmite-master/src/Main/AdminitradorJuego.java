@@ -197,23 +197,47 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		enemigo3.actualizarenemigo();
 		jugador.actualizar();
 		Rect jug = new Rect(jugador.x, jugador.y, 15, 15);
-		Rect enem1 = new Rect(enemigo1.ex, enemigo1.ey, 15, 15);
-		Rect enem2 = new Rect(enemigo2.ex, enemigo2.ey, 15, 15);
-		Rect enem3 = new Rect(enemigo3.ex, enemigo3.ey, 15, 15);
+		Rect enem1 = new Rect(enemigo1.ex, enemigo1.ey, enemigo1.ew, enemigo1.eh);
+		Rect enem2 = new Rect(enemigo2.ex, enemigo2.ey, enemigo2.ew, enemigo2.eh);
+		Rect enem3 = new Rect(enemigo3.ex, enemigo3.ey, enemigo3.ew, enemigo3.eh);
 		if(jug.colision(enem1) || jug.colision(enem2) || jug.colision(enem3)){
 			muerto=1;
 			vidascantidad.vidasnum--;
-			
-			for (int i=1;i<obj2.length;i++) {
-				if (obj2[i] != null) {					
-				Rect fuegoHor = new Rect(obj2[i].MundoX,obj2[i].MundoY,(25*nivelExpl),25);
-				Rect fuegoVer = new Rect (obj3[i].MundoX,obj3[i].MundoY,25,(25*nivelExpl));
+		}
+		for (int i=1;i<obj2.length;i++) {
+			if (obj3[i] != null) {
+				Rect fuegoHor = new Rect(obj2[i].MundoX,obj2[i].MundoY,(24*nivelExpl),24);
+				Rect fuegoVer = new Rect (obj3[i].MundoX,obj3[i].MundoY,24,(24*nivelExpl));
+				if(jug.colision(fuegoVer) || jug.colision(fuegoHor)){
+					muerto=1;
 				}
+
+				if(enem1.colision(fuegoVer) || enem1.colision(fuegoHor)){
+					enemigo1.ex=0;
+					enemigo1.ey=0;
+					enemigo1.ew=0;
+					enemigo1.eh=0;
+					enemigo1.edown1=null;
+				}
+				if(enem2.colision(fuegoVer) || enem2.colision(fuegoHor)){
+					enemigo2.ex=0;
+					enemigo2.ey=0;
+					enemigo2.ew=0;
+					enemigo2.eh=0;
+					enemigo2.edown1=null;
+				}
+				if(enem2.colision(fuegoVer) || enem2.colision(fuegoHor)){
+					enemigo2.ex=0;
+					enemigo2.ey=0;
+					enemigo2.ew=0;
+					enemigo2.eh=0;
+					enemigo2.edown1=null;
+				}
+
 			}
-			
 		}
 	}
-	
+
 	public void paintComponent(Graphics g) {
 		
 		super.paintComponent(g);

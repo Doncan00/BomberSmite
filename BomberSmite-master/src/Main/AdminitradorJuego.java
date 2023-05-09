@@ -48,7 +48,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 
 	public Enemigo enemigo2 = new Enemigo(this);
 	
-	public int nivelExpl = 3;
+	public int nivelExpl = 2;
 
 	public Clip clip,clipm,clipgo;
 	public AudioInputStream audioInputStream,maudioInputStream,goaudioInputStream;
@@ -206,7 +206,7 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 		}
 		for (int i=1;i<obj2.length;i++) {
 			if (obj2[i] != null && obj3[i] != null) {
-				Rect fuegoHor = new Rect(obj2[i].MundoX-(25*nivelExpl),obj2[i].MundoY-25,(25*nivelExpl+25),20);
+				Rect fuegoHor = new Rect(obj2[i].MundoX-25,obj2[i].MundoY-25,(25*nivelExpl+25),20);
 				Rect fuegoVer = new Rect (obj3[i].MundoX-25,obj3[i].MundoY-25,20,(25*nivelExpl+25));
 				System.out.println(fuegoVer.x);
 				System.out.println(fuegoVer.y);

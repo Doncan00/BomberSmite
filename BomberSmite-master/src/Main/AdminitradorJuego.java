@@ -294,8 +294,9 @@ public class AdminitradorJuego extends JPanel implements Runnable {
 						x = (obj2[i].MundoX / tamPantalla)-1 ;
 						y = (obj2[i].MundoY / tamPantalla)-3 + cont;
 						
-						while(y<0) {
+						while(y<0 || x < 0) {
 							y=1;
+							x=1;
 							cont++;
 						}
 						
